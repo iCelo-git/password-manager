@@ -58,4 +58,10 @@ public class PasswordController {
         }
         return "index";
     }
+
+    @GetMapping("/expired")
+    public String root(Model model) {
+        model.addAttribute("passwordsDto", passwordsService.findPasswordsSuggestedToBeChanged());
+        return "expired";
+    }
 }

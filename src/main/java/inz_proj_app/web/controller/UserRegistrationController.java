@@ -2,9 +2,7 @@ package inz_proj_app.web.controller;
 import javax.validation.Valid;
 
 import inz_proj_app.dto.UserRegistrationDto;
-import inz_proj_app.model.EmailDetails;
 import inz_proj_app.model.User;
-import inz_proj_app.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import inz_proj_app.service.UserService;
+import inz_proj_app.service.interfaces.UserService;
 
 
 @Controller

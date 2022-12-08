@@ -1,5 +1,5 @@
 package inz_proj_app.configuration;
-import inz_proj_app.service.TokenGeneratorService;
+import inz_proj_app.service.interfaces.TokenGeneratorService;
 import inz_proj_app.service.TokenGeneratorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import inz_proj_app.service.UserService;
+import inz_proj_app.service.interfaces.UserService;
 
 
 @Configuration

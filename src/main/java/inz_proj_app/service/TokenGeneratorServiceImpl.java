@@ -1,9 +1,9 @@
 package inz_proj_app.service;
 
 import inz_proj_app.model.User;
+import inz_proj_app.service.interfaces.TokenGeneratorService;
 
 import java.security.SecureRandom;
-import java.util.Base64;
 
 public class TokenGeneratorServiceImpl implements TokenGeneratorService {
 

@@ -28,18 +28,13 @@
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
             </ul>
         </div>
-        <div id="navbar1" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/expired}">Show Expired Passwords</a></li>
-            </ul>
-        </div>
     </div>
 </nav>
 
 <br>
 <br>
 <div class="container">
-    <h2>Login successful - here are your saved passwords</h2>
+    <h2>Here are your expired passwords</h2>
 
     <p>
         Welcome <span sec:authentication="principal.username">User</span>
@@ -84,7 +79,7 @@
     <div class="container" style="margin-left: 15px;">
         <div class="col-lg-9">
             <div class="table_header">
-            <h2 class="title-1 m-b-25">Saved passwords</h2>
+            <h2 class="title-1 m-b-25">Expired passwords</h2>
                 <div class="search_password">
                     <form th:action="@{/search}" method="get">
                         <input type="text" name="keyword" th:value="${keyword}" size="50" >
@@ -122,9 +117,6 @@
                                   th:object="${password}" th:method="post">
                                 <button>Update</button>
                             </form>
-<!--                            <a href="/password/update" target="_parent" method="get">-->
-<!--                                <button>Update</button>-->
-<!--                            </a>-->
                         </td>
                     </tr>
                     </tbody>

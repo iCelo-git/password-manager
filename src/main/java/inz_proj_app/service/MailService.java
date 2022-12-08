@@ -1,6 +1,7 @@
 package inz_proj_app.service;
 
 import inz_proj_app.model.EmailDetails;
+import inz_proj_app.service.interfaces.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -9,7 +10,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 @Service
-public class MailService implements EmailService{
+public class MailService implements EmailService {
     @Autowired
     private JavaMailSender javaMailSender;
 

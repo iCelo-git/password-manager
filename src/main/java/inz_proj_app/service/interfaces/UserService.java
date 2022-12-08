@@ -1,4 +1,4 @@
-package inz_proj_app.service;
+package inz_proj_app.service.interfaces;
 
 import inz_proj_app.dto.UserRegistrationDto;
 import inz_proj_app.model.User;

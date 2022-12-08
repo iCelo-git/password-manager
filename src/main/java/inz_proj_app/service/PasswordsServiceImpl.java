@@ -1,28 +1,44 @@
 package inz_proj_app.service;
 
 import inz_proj_app.dto.PasswordsDto;
+import inz_proj_app.dto.UserRegistrationDto;
+import inz_proj_app.model.EmailDetails;
+import inz_proj_app.model.NumberOfExpiredPasswords;
 import inz_proj_app.model.Passwords;
 import inz_proj_app.model.User;
+import inz_proj_app.repository.NumberOfExpiredPasswordsRepository;
 import inz_proj_app.repository.PasswordsRepository;
 import inz_proj_app.repository.UserRepository;
+import inz_proj_app.service.interfaces.EmailService;
+import inz_proj_app.service.interfaces.PasswordsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class PasswordsServiceImpl implements PasswordsService{
+public class PasswordsServiceImpl implements PasswordsService {
 
     @Autowired
     PasswordsRepository passwordsRepository;
 
     @Autowired
     UserRepository repository;
+
+    @Autowired
+    NumberOfExpiredPasswordsRepository expiredPasswordsRepository;
+
+    @Autowired
+    private EmailService emailService;
 
     @Override
     public List<PasswordsDto> findAllByUrl(String url) {
@@ -48,9 +64,12 @@ public class PasswordsServiceImpl implements PasswordsService{
                 .collect(Collectors.toList());
     }
 
+
+
     @Override
     public List<PasswordsDto> findPasswordsByUser() {
         User user = getCurrentUser();
+        checkIfPasswordsExpiered();
         return passwordsRepository.findPasswordsByUser(user)
                 .stream()
                 .map(this::loadPassword)
@@ -94,6 +113,24 @@ public class PasswordsServiceImpl implements PasswordsService{
     }
 
     @Override
+    public List<PasswordsDto> findPasswordsSuggestedToBeChanged() {
+        User user = getCurrentUser();
+        return passwordsRepository.findPasswordsByUser(user)
+                .stream()
+                .map(this::loadPassword)
+                .filter(pass -> checkIfPasswordShouldBeChanged(pass.getLastChange()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Integer findNumberOfEpiredPasswords() {
+        List<NumberOfExpiredPasswords> all = expiredPasswordsRepository.findAll();
+        if (!all.isEmpty()){
+            return all.stream().findFirst().get().getCounter();
+        }else return 0;
+    }
+
+    @Override
     public void saveNewPassword(PasswordsDto passwordsDto) {
         Passwords passwords = new Passwords();
 
@@ -105,6 +142,21 @@ public class PasswordsServiceImpl implements PasswordsService{
         passwords.setUser(getCurrentUser());
 
         passwordsRepository.save(passwords);
+    }
+
+    private void checkIfPasswordsExpiered(){
+        User user = getCurrentUser();
+        List<PasswordsDto> listOfPasswords = passwordsRepository.findPasswordsByUser(user)
+                .stream()
+                .map(this::loadPassword)
+                .filter(pass -> checkIfPasswordShouldBeChanged(pass.getLastChange()))
+                .collect(Collectors.toList());
+
+        if (!listOfPasswords.isEmpty() && !checkIfExpiredPasswordsNeedToBeUpdated(listOfPasswords)){
+            expiredPasswordsRepository.deleteAll();
+            expiredPasswordsRepository.save(new NumberOfExpiredPasswords(listOfPasswords.size()));
+            sendEmail(listOfPasswords);
+        }
     }
 
     private PasswordsDto loadPassword(Passwords password) {
@@ -137,5 +189,27 @@ public class PasswordsServiceImpl implements PasswordsService{
             return user;
         }else return null;
     }
+
+    private boolean checkIfPasswordShouldBeChanged(LocalDateTime localDateTime){
+      return Period.between(localDateTime.toLocalDate(), LocalDate.now()).getMonths() < 3;
+    }
+
+    private boolean checkIfExpiredPasswordsNeedToBeUpdated( List<PasswordsDto> listOfPasswords){
+        return Objects.equals(listOfPasswords.size(), findNumberOfEpiredPasswords());
+    }
+
+    private void sendEmail(List<PasswordsDto> listOfPasswords){
+
+        String str = listOfPasswords.stream()
+                .map(PasswordsDto::getUrl)
+                .collect(Collectors.joining(";"));
+
+        emailService.sendSimpleMail(EmailDetails.builder()
+                .subject("Passwords Expired")
+                .msgBody(str)
+                .recipient(getCurrentUser().getEmail())
+                .build());
+    }
+
 }
 

@@ -1,4 +1,4 @@
-package inz_proj_app.service;
+package inz_proj_app.service.interfaces;
 
 import inz_proj_app.dto.PasswordsDto;
 
@@ -22,5 +22,11 @@ public interface PasswordsService {
     public PasswordsDto findPasswordById(Long id);
 
     public List<PasswordsDto> findAllByEmailOrUrl(String input);
+
+    public List<PasswordsDto> findPasswordsSuggestedToBeChanged();
+
+    public Integer findNumberOfEpiredPasswords();
+
+
 }
 
