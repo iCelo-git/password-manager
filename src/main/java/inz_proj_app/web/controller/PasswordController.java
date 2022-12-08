@@ -1,4 +1,4 @@
-package inz_proj_app.web.useCaseController;
+package inz_proj_app.web.controller;
 
 import inz_proj_app.dto.PasswordsDto;
 import inz_proj_app.service.PasswordsServiceImpl;

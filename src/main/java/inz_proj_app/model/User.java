@@ -17,6 +17,8 @@ public class User {
     private String email;
     private String password;
 
+    private String hash;
+
     private Boolean active;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -112,5 +114,13 @@ public class User {
                 ", password='" + "*********" + '\'' +
                 ", roles=" + roles +
                 '}';
+    }
+
+    public String getHash() {
+        return hash;
+    }
+
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 }

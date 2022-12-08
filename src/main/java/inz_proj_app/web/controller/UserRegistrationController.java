@@ -1,8 +1,10 @@
-package inz_proj_app.web.useCaseController;
+package inz_proj_app.web.controller;
 import javax.validation.Valid;
 
 import inz_proj_app.dto.UserRegistrationDto;
+import inz_proj_app.model.EmailDetails;
 import inz_proj_app.model.User;
+import inz_proj_app.service.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +38,7 @@ public class UserRegistrationController {
                                       BindingResult result) {
 
         User existing = userService.findByEmail(userDto.getEmail());
+
         if (existing != null) {
             result.rejectValue("email", null, "There is already an account registered with that email");
         }
@@ -45,6 +48,6 @@ public class UserRegistrationController {
         }
 
         userService.save(userDto);
-        return "redirect:/registration?success";
+        return "redirect:/token";
     }
 }

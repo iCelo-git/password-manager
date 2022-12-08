@@ -1,4 +1,6 @@
 package inz_proj_app.configuration;
+import inz_proj_app.service.TokenGeneratorService;
+import inz_proj_app.service.TokenGeneratorServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -27,7 +29,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         "/css/**",
                         "/img/**",
                         "/webjars/**",
-                        "/h2/**").permitAll()
+                        "/h2/**",
+                        "/token/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -56,6 +59,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.setUserDetailsService(userService);
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
+    }
+
+    @Bean
+    public TokenGeneratorService tokenGeneratorService(){
+        return new TokenGeneratorServiceImpl();
     }
 
     @Override
