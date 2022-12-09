@@ -20,6 +20,20 @@ public class Passwords {
     private String url;
     private LocalDateTime lastChange;
 
+    public boolean isDuplicate() {
+        return duplicate;
+    }
+
+    public void setDuplicate(boolean duplicate) {
+        this.duplicate = duplicate;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    private boolean duplicate;
+
     @ManyToOne
     private User user;
 

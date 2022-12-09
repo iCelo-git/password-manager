@@ -20,9 +20,7 @@ import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -131,16 +129,48 @@ public class PasswordsServiceImpl implements PasswordsService {
     }
 
     @Override
-    public void saveNewPassword(PasswordsDto passwordsDto) {
-        Passwords passwords = new Passwords();
+    public List<PasswordsDto> checkIfThoseCreditentialsExists(PasswordsDto passwordsDto) {
+        List<Passwords> passwordsByEmailAndUrl = passwordsRepository.findPasswordsByEmailAndUrl(passwordsDto.getEmail(), passwordsDto.getUrl());
+        if (passwordsByEmailAndUrl.isEmpty()) return null;
 
+        return passwordsByEmailAndUrl.stream()
+                .map(this::loadPassword)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Set<PasswordsDto> loadDuplicatedPasswords() {
+        List<Passwords> passwordsByDuplicate = passwordsRepository.findPasswordsByDuplicate(true);
+        Set<Passwords> set = new HashSet<>();
+        for (Passwords p :passwordsByDuplicate) {
+            set.addAll(passwordsRepository.findPasswordsByEmailAndUrl(p.getEmail(), p.getUrl()));
+        }
+        return set.stream()
+                .map(this::loadPassword)
+                .collect(Collectors.toSet());
+    }
+
+    @Override
+    public void saveNewPassword(PasswordsDto passwordsDto) {
+            Passwords passwords = new Passwords();
+            passwords.setUrl(passwordsDto.getUrl());
+            passwords.setPasswordHash(passwordsDto.getPasswordHash());
+            passwords.setEmail((passwordsDto.getEmail()));
+            passwords.setLastChange(LocalDateTime.now());
+            passwords.setUser(getCurrentUser());
+            passwords.setDuplicate(false);
+            passwordsRepository.save(passwords);
+    }
+
+    @Override
+    public void saveNewPasswordDuplicate(PasswordsDto passwordsDto) {
+        Passwords passwords = new Passwords();
         passwords.setUrl(passwordsDto.getUrl());
         passwords.setPasswordHash(passwordsDto.getPasswordHash());
         passwords.setEmail((passwordsDto.getEmail()));
         passwords.setLastChange(LocalDateTime.now());
-
         passwords.setUser(getCurrentUser());
-
+        passwords.setDuplicate(true);
         passwordsRepository.save(passwords);
     }
 
@@ -191,7 +221,7 @@ public class PasswordsServiceImpl implements PasswordsService {
     }
 
     private boolean checkIfPasswordShouldBeChanged(LocalDateTime localDateTime){
-      return Period.between(localDateTime.toLocalDate(), LocalDate.now()).getMonths() < 3;
+      return Period.between(localDateTime.toLocalDate(), LocalDate.now()).getMonths() > 3;
     }
 
     private boolean checkIfExpiredPasswordsNeedToBeUpdated( List<PasswordsDto> listOfPasswords){

@@ -33,11 +33,6 @@
                 <li sec:authorize="isAuthenticated()"><a th:href="@{/expired}">Show Expired Passwords</a></li>
             </ul>
         </div>
-        <div id="navbar2" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/duplicates}">Show Duplicated Passwords</a></li>
-            </ul>
-        </div>
     </div>
 </nav>
 
@@ -127,9 +122,6 @@
                                   th:object="${password}" th:method="post">
                                 <button>Update</button>
                             </form>
-<!--                            <a href="/password/update" target="_parent" method="get">-->
-<!--                                <button>Update</button>-->
-<!--                            </a>-->
                         </td>
                     </tr>
                     </tbody>

@@ -3,6 +3,7 @@ package inz_proj_app.service.interfaces;
 import inz_proj_app.dto.PasswordsDto;
 
 import java.util.List;
+import java.util.Set;
 
 public interface PasswordsService {
 
@@ -13,6 +14,8 @@ public interface PasswordsService {
     public List<PasswordsDto> findAll();
 
     public void saveNewPassword(PasswordsDto passwordsDto);
+
+    public void saveNewPasswordDuplicate(PasswordsDto passwordsDto);
 
     public List<PasswordsDto> findPasswordsByUser();
 
@@ -27,6 +30,9 @@ public interface PasswordsService {
 
     public Integer findNumberOfEpiredPasswords();
 
+    public List<PasswordsDto> checkIfThoseCreditentialsExists(PasswordsDto passwordsDto);
+
+    public Set<PasswordsDto> loadDuplicatedPasswords();
 
 }
 

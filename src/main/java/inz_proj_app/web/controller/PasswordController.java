@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 public class PasswordController {
@@ -26,8 +27,19 @@ public class PasswordController {
 
     @PostMapping("/password/add")
     public RedirectView addPassword(@ModelAttribute("password") @Valid PasswordsDto passwordsDto) {
+        List<PasswordsDto> passwordsDtos = passwordsService.checkIfThoseCreditentialsExists(passwordsDto);
+        if (passwordsDtos != null){
+            passwordsService.saveNewPasswordDuplicate(passwordsDto);
+            return new RedirectView("/duplicates");
+        }
         passwordsService.saveNewPassword(passwordsDto);
         return new RedirectView("/");
+    }
+
+    @GetMapping("/duplicates")
+    public String readDuplicatedPasswords(Model model){
+        model.addAttribute("passwordsDto",passwordsService.loadDuplicatedPasswords());
+        return "duplicates";
     }
 
     @PostMapping("/password/delete/{id}")
