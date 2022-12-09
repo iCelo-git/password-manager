@@ -22,6 +22,7 @@ public class PasswordController {
     @GetMapping("/password/add")
     public String preaperNewPassword(Model model) {
         model.addAttribute("password", new PasswordsDto());
+        model.addAttribute("strongPass", passwordsService.generateStrongPassword());
         return "addNewPassword";
     }
 
@@ -51,6 +52,7 @@ public class PasswordController {
     @PostMapping("/password/update/{id}")
     public String preparePasswordForUpdate(@PathVariable Long id, Model model) {
         model.addAttribute("password", passwordsService.findPasswordById(id));
+        model.addAttribute("strongPass", passwordsService.generateStrongPassword());
         return "updatePassword";
     }
 

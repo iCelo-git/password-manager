@@ -151,6 +151,16 @@ public class PasswordsServiceImpl implements PasswordsService {
     }
 
     @Override
+    public String generateStrongPassword() {
+        PasswordGenerator passwordGenerator = new PasswordGenerator.PasswordGeneratorBuilder()
+                .useDigits(true)
+                .useLower(true)
+                .useUpper(true)
+                .build();
+        return passwordGenerator.generate(24);
+    }
+
+    @Override
     public void saveNewPassword(PasswordsDto passwordsDto) {
             Passwords passwords = new Passwords();
             passwords.setUrl(passwordsDto.getUrl());

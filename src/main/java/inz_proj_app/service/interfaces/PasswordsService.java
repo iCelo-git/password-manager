@@ -34,5 +34,7 @@ public interface PasswordsService {
 
     public Set<PasswordsDto> loadDuplicatedPasswords();
 
+    public String generateStrongPassword();
+
 }
 
