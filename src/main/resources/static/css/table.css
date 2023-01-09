@@ -10,6 +10,7 @@ h1 {
 table {
      width:100%;
      table-layout: fixed;
+     overflow-x: auto;
 }
 .table_header {
      margin-top: 1%;
@@ -19,6 +20,7 @@ table {
 
 .table_content {
      height: 500px;
+     overflow-x:auto;
 }
 .table_content button {
 	border-radius: 20px;
