@@ -7,7 +7,7 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/alerts.css}"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<!-- <div class="alerts" th:action="@{/registration}" th:object="${user}" method="post">
+<div class="alerts" th:action="@{/registration}" th:object="${user}" method="post">
 	<div th:if="${#fields.hasErrors('*')}" class="audun_warn">
 		<div class="alert alert-danger">
 			<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Errors:
@@ -35,53 +35,52 @@
 			You have succesfully registered your data.
 		</div>
 	</div>
-</div> -->
+</div>
+<!-- <div class="alerts">
+	<div th:if="${param.error}" class="audun_warn">
+		<div class="alert alert-danger">
+			<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Errors:
+			<li>This user is not active or invalid username/password.</li>
+		</div>
+	</div>
+
+	<div th:if="${param.info}" class="audun_info">
+		<i class="fa fa-info-circle" aria-hidden="true"></i>
+		EXAMPLE INFORMATION
+	</div>
 	
-<h2>Update this entry</h2>
+	<div th:if="${param.logout}" class="audun_success">
+		<div class="alert alert-info">
+			<i class="fa fa-check-circle" aria-hidden="true"></i> Success:
+			<li>You have been succesfully logged out.</li>
+		</div>
+	</div>
+</div>	 -->
 
 <body>
 	<div class="container" id="container">
 		<div class="form-container sign-in-container">
-			<form th:action="@{/password/add}" th:object="${password}" method="post">
-				<h1>Edit existing details</h1>
+			<form th:action="@{/token}" method="post">
+				<h1>Token Validator</h1>
 				<br>
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('email')}? 'has-error':''">
-					<input id="firstName" class="form-control" th:field="*{email}" placeholder="Login"/>
-					<p class="error-message"
-						th:each="error: ${#fields.errors('email')}"
-						th:text="${error}">Validation error</p>
-				</div>
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('url')}? 'has-error':''">
-					<input id="lastName" class="form-control" th:field="*{url}" placeholder="Website url"/>
-					<p class="error-message"
-						th:each="error : ${#fields.errors('url')}"
-						th:text="${error}">Validation error</p>
-				</div>
-				<div class="form-group"
-					th:classappend="${#fields.hasErrors('passwordHash')}? 'has-error':''">
-					<input id="email" class="form-control" th:field="*{passwordHash}" placeholder="Password"/>
-					<p class="error-message"
-						th:each="error : ${#fields.errors('passwordHash')}" th:text="${error}">Validation
-						error</p>
+				<div class="form-group">
+					<input type="text" id="email" name="email" class="form-control" autofocus="autofocus" placeholder="Email" />
 				</div>
 				<div class="form-group">
-					Sugested password:
-					<i th:text="${strongPass}">we suggest</i>
+					<input type="password" id="token" name="token" class="form-control" placeholder="Token" />
 				</div>
 				<br>
 				<div class="form-group">
-					<button type="submit" class="btn btn-success">Save</button>
+					<button type="submit" name="login-submit" id="login-submit" class="form-control btn btn-primary" value="Sumbit">Submit</button>
 				</div>
 			</form>
 		</div>
 		<div class="overlay-container">
 			<div class="overlay">
 				<div class="overlay-panel overlay-right">
-					<h1>Need to use other passwords?</h1>
-					<p>Go back to main page:</p>
-					<button class="ghost" id="signUp" onclick="window.location='/';" value="Home">Home</button>
+					<h1>Already registered?</h1>
+					<p>Go to login page:</p>
+					<button class="ghost" id="signUp" onclick="window.location='/';" value="Sign In">Sign In</button>
 				</div>
 			</div>
 		</div>

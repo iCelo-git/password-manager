@@ -46,8 +46,8 @@
 				<form class=registration th:action="@{/registration}" th:object="${user}" method="post">
 					<h1>Sign Up</h1>
 					<div class="form-group" th:classappend="${#fields.hasErrors('firstName')}? 'has-error':''">
-						<!-- <input id="firstName" class="form-control" th:field="*{firstName}" placeholder="First Name" /> -->
-						<p class="error-message" th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p>
+						<input id="firstName" class="form-control" th:field="*{firstName}" placeholder="First Name" />
+						<!-- <p class="error-message" th:each="error: ${#fields.errors('firstName')}" th:text="${error}">Validation error</p> -->
 					</div>
 					<div class="form-group" th:classappend="${#fields.hasErrors('lastName')}? 'has-error':''">
 						<input id="lastName" class="form-control" th:field="*{lastName}" placeholder="Last Name" />
@@ -76,6 +76,7 @@
 						</label>
 						<!-- <p class="error-message" th:each="error : ${#fields.errors('terms')}" th:text="${error}">Validation error</p> -->
 					</div>
+					<br>
 					<button type="submit" class="btn btn-success">Register</button>
 				</form>
 			</div>

@@ -1,136 +1,121 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+      
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css"
-          th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
-
-    <title>Password Manager</title>
+	<meta charset="UTF-8">
+	<!-- <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}"/> -->
+	<link rel="stylesheet" type="text/css" th:href="@{/css/alerts.css}"/>
+     <link rel="stylesheet" type="text/css" th:href="@{/css/index.css}"/>
+     <link rel="stylesheet" type="text/css" th:href="@{/css/table.css}"/>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script type="text/javascript" th:src="@{/js/clipboard.js}"></script>
+     <script type="text/javascript"
+        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+     <script type="text/javascript"
+        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+     <title>Password Manager</title>
 </head>
 <body>
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed"
-                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span> <span
-                    class="icon-bar"></span> <span class="icon-bar"></span> <span
-                    class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#" th:href="@{/}">Password Manager</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/expired}">Show Expired Passwords</a></li>
-                <li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">Logout</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 
-<br>
-<br>
-<div class="container">
-    <h2>Login successful - here are your saved passwords</h2>
+     <div class="alerts">
+          <div th:if="${param.error}" class="audun_warn">
+               <div class="alert alert-danger">
+                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Errors:
+                    <li>This user is not active or invalid username/password.</li>
+               </div>
+          </div>
+     
+          <div th:if="${param.info}" class="audun_info">
+               <i class="fa fa-info-circle" aria-hidden="true"></i>
+               <li>Password copied to clipboard.</li>
+          </div>
+          
+          <div th:if="${param.logout}" class="audun_success">
+               <div class="alert alert-info">
+                    <i class="fa fa-check-circle" aria-hidden="true"></i> Success:
+                    <li>You have been succesfully logged out.</li>
+               </div>
+          </div>
+     </div>
 
-    <p>
-        Welcome <span sec:authentication="principal.username">User</span>
-    </p>
-</div>
-<style>
-    .search_form {
-        border-radius: 5px;
-        border: solid 1px;
-    }
+     <div class="hamburger-menu">
+          <input id="menu__toggle" type="checkbox" />
+          <label class="menu__btn" for="menu__toggle">
+               <span></span>
+          </label>
+     
+          <ul class="menu__box">
+               <li sec:authorize="isAuthenticated()"><a class="menu__item" th:href="@{/}">My Passwords</a></li>
+               <li sec:authorize="isAuthenticated()"><a class="menu__item" th:href="@{/duplicates}">Duplicates</a></li>
+               <li sec:authorize="isAuthenticated()"><a class="menu__item" th:href="@{/expired}">Expired</a></li>
+               <li sec:authorize="isAuthenticated()"><a class="menu__item" th:href="@{/logout}">Logout</a></li>
+          </ul>
+     </div>
+     <br>
+     <br>
+     <!-- <div class="container">
+     <h2>Login successful - here are your saved passwords</h2>
 
-    button {
-        border-radius: 10px;
-        border: solid 1px;
-        transition: 200ms;
-        margin: 3px;
-    }
+     <p>
+          Welcome <span sec:authentication="principal.username">User</span>
+     </p>
+     </div> -->
 
-    button:hover {
-        transform: translateY(-5px);
-    }
-
-    .table_header {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        align-content: center;
-    }
-
-    .row {
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .table-responsive {
-        width: 1850px;
-    }
-
-</style>
-<div class="row m-t-25">
-
-    <div class="container" style="margin-left: 15px;">
-        <div class="col-lg-9">
-            <div class="table_header">
-            <h2 class="title-1 m-b-25">Saved passwords</h2>
-                <div class="search_password">
-                    <form th:action="@{/search}" method="get">
-                        <input type="text" name="keyword" th:value="${keyword}" size="50" >
-                        <button>Search</button>
+     <div class="container">
+          <div class="table_header">
+               <div class="search_password">
+                    <form id="search" th:action="@{/search}" method="get">
+                         <h2>Duplicated passwords</h2>
+                         <input type="text" name="keyword" th:value="${keyword}" size="50" placeholder="Find your password">
+                         <button>Search</button>
                     </form>
-                </div>
-                <a href="/password/add" target="_parent" method="get"><button>Add</button></a>
-            </div>
-            <div class="table-responsive table--no-card m-b-40">
-                <table class="table table-borderless table-striped table-earning">
+               </div>
+               <table class="table">
                     <thead>
-                    <tr>
-
-                        <th>DOMAIN</th>
-                        <th>LOGIN</th>
-                        <th>PASSWORD</th>
-                        <th>LAST CHANGE</th>
-                        <th></th>
-
-                    </tr>
+                         <tr>
+                              <th>DOMAIN</th>
+                              <th>LOGIN</th>
+                              <th id="password">PASSWORD</th>
+                              <th id="last_change">LAST CHANGE</th>
+                              <th id="add_button">
+                                   <a href="/password/add" target="_parent" method="get">
+                                        <button class="ghost">Add</button>
+                                   </a>
+                              </th>
+                         </tr>
                     </thead>
+               </table>
+          </div>
+          <div class="table_content">
+               <table class="table">
                     <tbody>
-                    <tr th:each="password: ${passwordsDto}">
-
-                        <td th:text="${password.url}"></td>
-                        <td th:text="${password.email}"></td>
-                        <td th:text="${password.passwordHash}"></td>
-                        <td th:text="${#temporals.format(password.lastChange, 'dd-MM-yyyy HH:mm')}"></td>
-                        <td>
-                            <form action="#" th:action="@{'/password/delete/{id}'(id=${password.id})}"
-                                  th:object="${password}" th:method="delete">
-                                <button>Delete</button>
-                            </form>
-                            <form action="#" th:action="@{'/password/update/{id}'(id=${password.id})}"
-                                  th:object="${password}" th:method="post">
-                                <button>Update</button>
-                            </form>
-                        </td>
-                    </tr>
+                         <tr th:each="password: ${passwordsDto}">
+                              <td th:text="${password.url}"></td>
+                              <td th:text="${password.email}"></td>
+                              <td id="password">
+                                   <form id="clipboard_button_form">
+                                        <!-- [[${password.passwordHash}]] -->
+                                        <button th:data-password="${password.passwordHash}" id="clipboard_button" th:onclick="copy(this.getAttribute('data-password'))">Copy to clipboard</button>
+                                   </form>
+                                   
+                              </td>
+                              <td id="last_change" th:text="${#temporals.format(password.lastChange, 'dd-MM-yyyy HH:mm')}"></td>
+                              <td id="options">
+                                   <form id="update_button_form" action="#" th:action="@{'/password/update/{id}'(id=${password.id})}"
+                                        th:object="${password}" th:method="post">
+                                        <button id="update_button">Update</button>
+                                   </form>
+                                   <form id="delete_button_form" action="#" th:action="@{'/password/delete/{id}'(id=${password.id})}"
+                                        th:object="${password}" th:method="delete">
+                                        <button id="delete_button">Delete</button>
+                                   </form>
+                              </td>
+                         </tr>
                     </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript"
-        th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-<script type="text/javascript"
-        th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+               </table>
+          </div>
+     </div>
 
 </body>
 </html>
