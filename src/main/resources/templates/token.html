@@ -7,35 +7,35 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/css/alerts.css}"/>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-<div class="alerts" th:action="@{/registration}" th:object="${user}" method="post">
-	<div th:if="${#fields.hasErrors('*')}" class="audun_warn">
-		<div class="alert alert-danger">
-			<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Errors:
-			<span th:each="error: ${#fields.errors('*')}" th:errors="*{user.firstName}"></span>
-			<span th:each="error: ${#fields.errors('*')}" th:text="${field}"></span>
-			<li th:each="error: ${#fields.errors('firstName')}">First Name: <b><b>[[${error}]]</b></b></li>
-			<li th:each="error: ${#fields.errors('lastName')}">Last Name: <b>[[${error}]]</b></li>
-			<li th:each="error: ${#fields.errors('email')}">E-mail: <b>[[${error}]]</b></li>
-			<li th:each="error: ${#fields.errors('confirmEmail')}">Confirm E-mail: <b>[[${error}]]</b></li>
-			<li th:each="error: ${#fields.errors('password')}">Password: <b>[[${error}]]</b></li>
-			<li th:each="error: ${#fields.errors('confirmPassword')}">Confirm Password: <b>[[${error}]]</b></li>
-			<li th:each="error: ${#fields.errors('terms')}">Terms and Conditions: <b>[[${error}]]</b></li>
+<!--<div class="alerts" th:action="@{/registration}" th:object="${user}" method="post">-->
+<!--	<div th:if="${#fields.hasErrors('*')}" class="audun_warn">-->
+<!--		<div class="alert alert-danger">-->
+<!--			<i class="fa fa-exclamation-triangle" aria-hidden="true"></i> Errors:-->
+<!--			<span th:each="error: ${#fields.errors('*')}" th:errors="*{user.firstName}"></span>-->
+<!--			<span th:each="error: ${#fields.errors('*')}" th:text="${field}"></span>-->
+<!--			<li th:each="error: ${#fields.errors('firstName')}">First Name: <b><b>[[${error}]]</b></b></li>-->
+<!--			<li th:each="error: ${#fields.errors('lastName')}">Last Name: <b>[[${error}]]</b></li>-->
+<!--			<li th:each="error: ${#fields.errors('email')}">E-mail: <b>[[${error}]]</b></li>-->
+<!--			<li th:each="error: ${#fields.errors('confirmEmail')}">Confirm E-mail: <b>[[${error}]]</b></li>-->
+<!--			<li th:each="error: ${#fields.errors('password')}">Password: <b>[[${error}]]</b></li>-->
+<!--			<li th:each="error: ${#fields.errors('confirmPassword')}">Confirm Password: <b>[[${error}]]</b></li>-->
+<!--			<li th:each="error: ${#fields.errors('terms')}">Terms and Conditions: <b>[[${error}]]</b></li>-->
 
-		</div>
-	</div>
+<!--		</div>-->
+<!--	</div>-->
 
-	<div th:if="${param.info}" class="audun_info">
-		<i class="fa fa-info-circle" aria-hidden="true"></i>
-		EXAMPLE INFORMATION
-	</div>
-	
-	<div th:if="${param.success}" class="audun_success">
-		<div class="alert alert-info">
-			<i class="fa fa-check-circle" aria-hidden="true"></i>
-			You have succesfully registered your data.
-		</div>
-	</div>
-</div>
+<!--	<div th:if="${param.info}" class="audun_info">-->
+<!--		<i class="fa fa-info-circle" aria-hidden="true"></i>-->
+<!--		EXAMPLE INFORMATION-->
+<!--	</div>-->
+<!--	-->
+<!--	<div th:if="${param.success}" class="audun_success">-->
+<!--		<div class="alert alert-info">-->
+<!--			<i class="fa fa-check-circle" aria-hidden="true"></i>-->
+<!--			You have succesfully registered your data.-->
+<!--		</div>-->
+<!--	</div>-->
+<!--</div>-->
 <!-- <div class="alerts">
 	<div th:if="${param.error}" class="audun_warn">
 		<div class="alert alert-danger">

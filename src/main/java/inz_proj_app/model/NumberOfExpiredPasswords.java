@@ -23,8 +23,11 @@ public class NumberOfExpiredPasswords {
     private Integer counter;
     private LocalDateTime date;
 
-    public NumberOfExpiredPasswords(Integer counter) {
+    private Long userID;
+
+    public NumberOfExpiredPasswords(Integer counter, Long userID) {
         this.counter = counter;
         this.date = LocalDateTime.now();
+        this.userID = userID;
     }
 }

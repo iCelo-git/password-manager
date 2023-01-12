@@ -1,7 +1,6 @@
 package inz_proj_app.service;
 
 import inz_proj_app.dto.PasswordsDto;
-import inz_proj_app.dto.UserRegistrationDto;
 import inz_proj_app.model.EmailDetails;
 import inz_proj_app.model.NumberOfExpiredPasswords;
 import inz_proj_app.model.Passwords;
@@ -16,7 +15,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -122,15 +120,20 @@ public class PasswordsServiceImpl implements PasswordsService {
 
     @Override
     public Integer findNumberOfEpiredPasswords() {
-        List<NumberOfExpiredPasswords> all = expiredPasswordsRepository.findAll();
-        if (!all.isEmpty()){
-            return all.stream().findFirst().get().getCounter();
-        }else return 0;
+        User user = getCurrentUser();
+        if (user.getId() != null) {
+            List<NumberOfExpiredPasswords> all = expiredPasswordsRepository.findAllByUserID(user.getId());
+            if (!all.isEmpty()) {
+                return all.stream().findFirst().get().getCounter();
+            }
+        }
+        return 0;
     }
 
     @Override
     public List<PasswordsDto> checkIfThoseCreditentialsExists(PasswordsDto passwordsDto) {
-        List<Passwords> passwordsByEmailAndUrl = passwordsRepository.findPasswordsByEmailAndUrl(passwordsDto.getEmail(), passwordsDto.getUrl());
+        User user = getCurrentUser();
+        List<Passwords> passwordsByEmailAndUrl = passwordsRepository.findPasswordsByEmailAndUrlAndUserEquals(passwordsDto.getEmail(), passwordsDto.getUrl(), user);
         if (passwordsByEmailAndUrl.isEmpty()) return null;
 
         return passwordsByEmailAndUrl.stream()
@@ -140,10 +143,11 @@ public class PasswordsServiceImpl implements PasswordsService {
 
     @Override
     public Set<PasswordsDto> loadDuplicatedPasswords() {
+        User user = getCurrentUser();
         List<Passwords> passwordsByDuplicate = passwordsRepository.findPasswordsByDuplicate(true);
         Set<Passwords> set = new HashSet<>();
         for (Passwords p :passwordsByDuplicate) {
-            set.addAll(passwordsRepository.findPasswordsByEmailAndUrl(p.getEmail(), p.getUrl()));
+            set.addAll(passwordsRepository.findPasswordsByEmailAndUrlAndUserEquals(p.getEmail(), p.getUrl(), user));
         }
         return set.stream()
                 .map(this::loadPassword)
@@ -194,7 +198,7 @@ public class PasswordsServiceImpl implements PasswordsService {
 
         if (!listOfPasswords.isEmpty() && !checkIfExpiredPasswordsNeedToBeUpdated(listOfPasswords)){
             expiredPasswordsRepository.deleteAll();
-            expiredPasswordsRepository.save(new NumberOfExpiredPasswords(listOfPasswords.size()));
+            expiredPasswordsRepository.save(new NumberOfExpiredPasswords(listOfPasswords.size(), user.getId()));
             sendEmail(listOfPasswords);
         }
     }

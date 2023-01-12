@@ -7,5 +7,5 @@ import java.util.List;
 
 public interface NumberOfExpiredPasswordsRepository extends JpaRepository<NumberOfExpiredPasswords, Long > {
 
-    List<NumberOfExpiredPasswords> findAll();
+    List<NumberOfExpiredPasswords> findAllByUserID(Long userID);
 }

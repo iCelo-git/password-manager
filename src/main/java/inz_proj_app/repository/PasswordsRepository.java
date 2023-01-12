@@ -15,7 +15,7 @@ public interface PasswordsRepository extends JpaRepository <Passwords, Long > {
     List<Passwords> findAllByEmail(String email);
     List<Passwords> findPasswordsByUser(User user);
 
-    List<Passwords> findPasswordsByEmailAndUrl(String email, String url);
+    List<Passwords> findPasswordsByEmailAndUrlAndUserEquals(String email, String url, User user);
 
     List<Passwords> findPasswordsByDuplicate(Boolean b);
 }
