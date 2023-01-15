@@ -39,7 +39,7 @@ Aplikacja "web-based" stworzona na podstawie [Spring Boot Framework](https://spr
 ![diagram_wzorca_uml](https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fsomospnt.com%2Fimages%2Fblog%2Farticulos%2F159-node-mvc%2Fmodel-view-controller-light-blue.png&f=1&nofb=1)
 
 ### Diagram klas UML
-![diagram_klas_uml](https://cdn.discordapp.com/attachments/981690125190836304/982515354729324594/InzynieriaProjekt.jpg)
+![diagram_klas_uml](https://cdn.discordapp.com/attachments/1030523826225819700/1064317780125560872/uml.jpg)
 
 ### Diagram użycia (Use-Case Diagram)
 ![diagram_uzycia](https://media.discordapp.net/attachments/1030523826225819700/1064308259588157500/image.png?width=894&height=683)
