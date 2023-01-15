@@ -17,7 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -235,7 +235,7 @@ public class PasswordsServiceImpl implements PasswordsService {
     }
 
     private boolean checkIfPasswordShouldBeChanged(LocalDateTime localDateTime){
-      return Period.between(localDateTime.toLocalDate(), LocalDate.now()).getMonths() > 3;
+        return ChronoUnit.MONTHS.between(localDateTime.toLocalDate(), LocalDate.now()) > 3;
     }
 
     private boolean checkIfExpiredPasswordsNeedToBeUpdated( List<PasswordsDto> listOfPasswords){
