@@ -41,7 +41,7 @@ Aplikacja "web-based" stworzona na podstawie [Spring Boot Framework](https://spr
 ![diagram_klas_uml](https://cdn.discordapp.com/attachments/981690125190836304/982515354729324594/InzynieriaProjekt.jpg)
 
 ### Diagram użycia (Use-Case Diagram)
-![diagram_uzycia](https://scontent.xx.fbcdn.net/v/t1.15752-9/286586339_395303169315769_7686017604562546848_n.png?stp=dst-png_p403x403&_nc_cat=108&ccb=1-7&_nc_sid=aee45a&_nc_ohc=NdZviy3xVPAAX_Sq5qz&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AVLFX_k3AO5M2yuURHuJwhrLOfMTqHAiW4UaqUXVfmlfyA&oe=62CA9E3E)
+![diagram_uzycia](https://media.discordapp.net/attachments/1030523826225819700/1064308259588157500/image.png?width=894&height=683)
 
 
 ## Obsługa narzędzia
