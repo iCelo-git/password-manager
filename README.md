@@ -110,7 +110,7 @@ Przy nieudanej próbie zalogowania lub rejestracji wyświetlony zostanie alert z
 ![error_alert](https://i.imgur.com/8eTz8iA.png)
 
 ### Success
-Przy udanym wylogowaniu wyświetlony zostanie odpowiedni komunikat dla użytkownika.
+Przy udanym wylogowaniu wyświetlony zostanie odpowiedni komunikat dla użytkownika.<br>
 ![success_alert](https://i.imgur.com/kwjz7UV.png)
 
 ## Czynności administracyjne
