@@ -57,6 +57,9 @@ Po załadowaniu strony wyświetli nam się strona logowania. Jeżeli mamy już k
 Jednak w sytuacji gdy nie posiadamy jeszcze konta, należy zarejestrować się. Zostaniemy przeniesieni do strony z rejestracją po kliknięciu **Register here**.
 ![strona_rejestracji](https://i.imgur.com/Uab3dj8.png)
 
+### Token uwierzytelniający
+Po rejestracji na maila, na które zostało zarejestrowane konto, wysłany zostanie Token, który należy wpisać jako uwierzetylnienie prawdziwości danych.
+![token](https://i.imgur.com/QoryL9O.png)
 
 ### Interfejs zalogowanego użytkownika
 Po udanej próbie zalogowania, aplikacja przeniesie nas do głównego strony zarządzania naszymi zapisanymi hasłami. Pozycje są przedstawione w formie tabeli z takimi danymi jak:
@@ -81,10 +84,34 @@ Przy chęci zarejestrowania nowego hasła, użytkownik zostanie przeniesiony na 
 Po przejściu do edycji naszej wygranej pozycji, ukażę nam się strona specjalnie dedykowana pod zmianę adresu e-mail, url strony lub samego hasła zapisanego w bazie danych. Operację zapisania naszej edycji akceptujemy przyciskiem **Save**.
 ![edycja_hasla](https://i.imgur.com/29GNAt7.png)
 
+### Edycja haseł z wyświetlaniem daty ostatniej aktualizacji
+Przy każdym wpisie pokazana jest informacja o dacie ostatniej aktualizacji hasła.
 
 ### Eksport hasła do schowka
 Przy każdym zapisanym haśle znajduje się przycisk __COPY TO CLIPBOARD__, który po wciśnięciu kopiuje hasło do schowka.
 ![copy_to_clipboard](https://i.imgur.com/UITfimI.png)
+
+### Zduplikowane hasła
+Jeżeli do różnych wpisów zostanie użyte takie samo hasło, aplikacja przeniesie je do zakładki __Duplicated passwords__
+![duplicated_passwords](https://i.imgur.com/75JbGuH.png)
+
+### Wygaśnięcie hasła
+Po upływie 3 miesięcy od ostatniej aktualizacji hasła zostanie ono przeniesione do tabeli z hasłami, które wygasły.
+![expired_passwords](https://i.imgur.com/Bui8PM3.png)
+
+### Powiadomienie e-mail o wygaśnięciu hasła
+Po upływie 3 miesięcy od ostatniej aktualizacji hasła zostanie automatycznie wysłane powiadomienie e-mail do użytkownika o konieczności aktualizacji hasła ze wzgledów bezpieczeństwa.
+![email_notification](https://i.imgur.com/g1j9qPV.png)
+
+## Alerty
+
+### Error
+Przy nieudanej próbie zalogowania lub rejestracji wyświetlony zostanie alert z informacją o wystąpieniu błędu.
+![error_alert](https://i.imgur.com/8eTz8iA.png)
+
+### Success
+Przy udanym wylogowaniu wyświetlony zostanie odpowiedni komunikat dla użytkownika.
+![success_alert](https://i.imgur.com/kwjz7UV.png)
 
 ## Czynności administracyjne
 
