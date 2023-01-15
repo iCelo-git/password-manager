@@ -27,6 +27,7 @@
     - [Success](#success)
   - [Czynności administracyjne](#czynno-ci-administracyjne)
     - [Zarządzanie bazą danych](#zarz-dzanie-baz--danych)
+  - [Ocena zgodności z założeniami oraz wkład osobowy](#ocena-zgodnosci-z-zalozenaimi-oraz-wklad-osobowy)
 
 ## Opis
 
@@ -133,3 +134,6 @@ Dostęp do bazy danych jest dostępny nawet z poziomu przeglądarki pod adresem:
 ![baza_logowanie](https://i.imgur.com/OFBqDjp.png)
 
 Aplikacja korzysta ze sterownika [JDBC](https://pl.wikipedia.org/wiki/Java_DataBase_Connectivity). W ten sposób komunikuję się automatycznie z bazą danych i wykonuje takie operacje jak **SELECT**, **UPDATE**, **INSERT INTO**, **DELETE**.
+---
+## Ocena zgodności z założeniami oraz wkład osobowy
+![wklad](https://cdn.discordapp.com/attachments/1030523826225819700/1064314577870934036/wklad.png)
