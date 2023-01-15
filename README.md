@@ -51,12 +51,15 @@ Aby dostać się do strony logowania należy wpisać adres URL, np.:
 
 ### Logowanie
 Po załadowaniu strony wyświetli nam się strona logowania. Jeżeli mamy już konto to wystarczy wpisać swój Login (Username) oraz Hasło (Password).
-![strona_logowania](https://i.imgur.com/I4mLZ8J.png)
+![strona_logowania](https://i.imgur.com/77d1Adi.png)
 
 ### Rejestracja
 Jednak w sytuacji gdy nie posiadamy jeszcze konta, należy zarejestrować się. Zostaniemy przeniesieni do strony z rejestracją po kliknięciu **Register here**.
-![strona_rejestracji](https://i.imgur.com/jSFu3WU.png)
+![strona_rejestracji](https://i.imgur.com/Uab3dj8.png)
 
+### Token uwierzytelniający
+Po rejestracji na maila, na które zostało zarejestrowane konto, wysłany zostanie Token, który należy wpisać jako uwierzetylnienie prawdziwości danych.
+![token](https://i.imgur.com/QoryL9O.png)
 
 ### Interfejs zalogowanego użytkownika
 Po udanej próbie zalogowania, aplikacja przeniesie nas do głównego strony zarządzania naszymi zapisanymi hasłami. Pozycje są przedstawione w formie tabeli z takimi danymi jak:
@@ -67,19 +70,48 @@ Po udanej próbie zalogowania, aplikacja przeniesie nas do głównego strony zar
  - Przyciski do usuwania/edycji pozycji
 
 Interfejs wygląda następująco:
-![strona_po_zalogowaniu](https://i.imgur.com/HOpcUXp.png)
+![strona_po_zalogowaniu](https://i.imgur.com/arXcfoB.png)
 
 ### Wyszukiwanie hasła
 Pod komunikatem o udanym zalogowaniu, mamy pasek wyszukiwania. Tutaj można wyszukać strony url, które nas interesują. Funkcjonalność działa na bazie wyrażeń regularnych. W przypadku kiedy wprowadzimy pierwsze litery interesującej nas rekordu, zostanie ono poprawnie odnaleziona:
-![wyszukiwanie](https://i.imgur.com/0UUqKyX.png)
+![wyszukiwanie](https://i.imgur.com/uI4BQkR.png)
 
 ### Rejestracja nowej pozycji
 Przy chęci zarejestrowania nowego hasła, użytkownik zostanie przeniesiony na podstronę, gdzie może wprowadzić swoje nowe dane do bazy danych.
-![rejestracja_hasla](https://i.imgur.com/Xk4Ma4N.png)
+![rejestracja_hasla](https://i.imgur.com/xJF7WGC.png)
 
 ### Edycja pozycji
 Po przejściu do edycji naszej wygranej pozycji, ukażę nam się strona specjalnie dedykowana pod zmianę adresu e-mail, url strony lub samego hasła zapisanego w bazie danych. Operację zapisania naszej edycji akceptujemy przyciskiem **Save**.
-![edycja_hasla](https://i.imgur.com/o08ZQ9N.png)
+![edycja_hasla](https://i.imgur.com/29GNAt7.png)
+
+### Edycja haseł z wyświetlaniem daty ostatniej aktualizacji
+Przy każdym wpisie pokazana jest informacja o dacie ostatniej aktualizacji hasła.
+
+### Eksport hasła do schowka
+Przy każdym zapisanym haśle znajduje się przycisk __COPY TO CLIPBOARD__, który po wciśnięciu kopiuje hasło do schowka.
+![copy_to_clipboard](https://i.imgur.com/UITfimI.png)
+
+### Zduplikowane hasła
+Jeżeli do różnych wpisów zostanie użyte takie samo hasło, aplikacja przeniesie je do zakładki __Duplicated passwords__
+![duplicated_passwords](https://i.imgur.com/75JbGuH.png)
+
+### Wygaśnięcie hasła
+Po upływie 3 miesięcy od ostatniej aktualizacji hasła zostanie ono przeniesione do tabeli z hasłami, które wygasły.
+![expired_passwords](https://i.imgur.com/Bui8PM3.png)
+
+### Powiadomienie e-mail o wygaśnięciu hasła
+Po upływie 3 miesięcy od ostatniej aktualizacji hasła zostanie automatycznie wysłane powiadomienie e-mail do użytkownika o konieczności aktualizacji hasła ze wzgledów bezpieczeństwa.<br>
+![email_notification](https://i.imgur.com/g1j9qPV.png)
+
+## Alerty
+
+### Error
+Przy nieudanej próbie zalogowania lub rejestracji wyświetlony zostanie alert z informacją o wystąpieniu błędu.
+![error_alert](https://i.imgur.com/8eTz8iA.png)
+
+### Success
+Przy udanym wylogowaniu wyświetlony zostanie odpowiedni komunikat dla użytkownika.<br>
+![success_alert](https://i.imgur.com/kwjz7UV.png)
 
 ## Czynności administracyjne
 
