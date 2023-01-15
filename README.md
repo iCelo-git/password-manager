@@ -51,11 +51,11 @@ Aby dostać się do strony logowania należy wpisać adres URL, np.:
 
 ### Logowanie
 Po załadowaniu strony wyświetli nam się strona logowania. Jeżeli mamy już konto to wystarczy wpisać swój Login (Username) oraz Hasło (Password).
-![strona_logowania](https://i.imgur.com/I4mLZ8J.png)
+![strona_logowania](https://i.imgur.com/77d1Adi.png)
 
 ### Rejestracja
 Jednak w sytuacji gdy nie posiadamy jeszcze konta, należy zarejestrować się. Zostaniemy przeniesieni do strony z rejestracją po kliknięciu **Register here**.
-![strona_rejestracji](https://i.imgur.com/jSFu3WU.png)
+![strona_rejestracji](https://i.imgur.com/Uab3dj8.png)
 
 
 ### Interfejs zalogowanego użytkownika
@@ -67,19 +67,24 @@ Po udanej próbie zalogowania, aplikacja przeniesie nas do głównego strony zar
  - Przyciski do usuwania/edycji pozycji
 
 Interfejs wygląda następująco:
-![strona_po_zalogowaniu](https://i.imgur.com/HOpcUXp.png)
+![strona_po_zalogowaniu](https://i.imgur.com/arXcfoB.png)
 
 ### Wyszukiwanie hasła
 Pod komunikatem o udanym zalogowaniu, mamy pasek wyszukiwania. Tutaj można wyszukać strony url, które nas interesują. Funkcjonalność działa na bazie wyrażeń regularnych. W przypadku kiedy wprowadzimy pierwsze litery interesującej nas rekordu, zostanie ono poprawnie odnaleziona:
-![wyszukiwanie](https://i.imgur.com/0UUqKyX.png)
+![wyszukiwanie](https://i.imgur.com/uI4BQkR.png)
 
 ### Rejestracja nowej pozycji
 Przy chęci zarejestrowania nowego hasła, użytkownik zostanie przeniesiony na podstronę, gdzie może wprowadzić swoje nowe dane do bazy danych.
-![rejestracja_hasla](https://i.imgur.com/Xk4Ma4N.png)
+![rejestracja_hasla](https://i.imgur.com/xJF7WGC.png)
 
 ### Edycja pozycji
 Po przejściu do edycji naszej wygranej pozycji, ukażę nam się strona specjalnie dedykowana pod zmianę adresu e-mail, url strony lub samego hasła zapisanego w bazie danych. Operację zapisania naszej edycji akceptujemy przyciskiem **Save**.
-![edycja_hasla](https://i.imgur.com/o08ZQ9N.png)
+![edycja_hasla](https://i.imgur.com/29GNAt7.png)
+
+
+### Eksport hasła do schowka
+Przy każdym zapisanym haśle znajduje się przycisk __COPY TO CLIPBOARD__, który po wciśnięciu kopiuje hasło do schowka.
+![copy_to_clipboard](https://i.imgur.com/UITfimI.png)
 
 ## Czynności administracyjne
 
