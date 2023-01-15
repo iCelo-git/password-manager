@@ -49,9 +49,8 @@ Aplikacja "web-based" stworzona na podstawie [Spring Boot Framework](https://spr
 ### Uruchomienie programu
 Po uruchomieniu programu strona będzie dostępna pod adresem IP oraz portem 8080 aktualnego komputera/serwera. Po wygenerowaniu pliku .jar, można aplikację uruchomić przez:
 
-```sh
-  java -jar aplikacja.jar
-```
+Klikacjąc dwókrotnie na password-manager.jar lub:
+> java -jar password-manager.jar
 
 Aby dostać się do strony logowania należy wpisać adres URL, np.:
 ```
