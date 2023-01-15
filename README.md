@@ -100,7 +100,7 @@ Po upływie 3 miesięcy od ostatniej aktualizacji hasła zostanie ono przeniesio
 ![expired_passwords](https://i.imgur.com/Bui8PM3.png)
 
 ### Powiadomienie e-mail o wygaśnięciu hasła
-Po upływie 3 miesięcy od ostatniej aktualizacji hasła zostanie automatycznie wysłane powiadomienie e-mail do użytkownika o konieczności aktualizacji hasła ze wzgledów bezpieczeństwa.
+Po upływie 3 miesięcy od ostatniej aktualizacji hasła zostanie automatycznie wysłane powiadomienie e-mail do użytkownika o konieczności aktualizacji hasła ze wzgledów bezpieczeństwa.<br>
 ![email_notification](https://i.imgur.com/g1j9qPV.png)
 
 ## Alerty
